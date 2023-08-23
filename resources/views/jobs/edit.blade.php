@@ -5,12 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"id='hola'>{{ __('Crear Trabajo') }}</div>
+                <div class="card-header">{{ __('Editar Trabajo') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('jobs.store') }}">
+                    <form id="formChampionship" method="post" action="{{ route('jobs.update', $job->id) }}" novalidate autocomplete="off" onsubmit=" return $('#formChampionship').addClass('was-validated');">
                         @csrf
-
+                         @method('PUT')
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Usuario') }}</label>
 
@@ -51,7 +51,7 @@
                             <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('Titulo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="title">
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="title" value="{{$job->title}}">
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
                             <label for="status" class="col-md-4 col-form-label text-md-end">{{ __('Estado') }}</label>
 
                             <div class="col-md-6">
-                                <input id="status" type="text" class="form-control @error('status') is-invalid @enderror" name="status" required autocomplete="status">
+                                <input id="status" type="text" class="form-control @error('status') is-invalid @enderror" name="status" required autocomplete="status" value="{{$job->status}}">
 
                                 @error('status')
                                     <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Descripcion') }}</label>
 
                             <div class="col-md-6">
-                               <textarea id='description' name="description"class='form-control' cols="30" rows="10" @error('description') is-invalid  required autocomplete="description"@enderror></textarea>
+                               <textarea id='description' name="description"class='form-control' cols="30" rows="10" @error('description') is-invalid  required autocomplete="description"@enderror value="{{$job->description}}"></textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -99,7 +99,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Guardar') }}
+                                    {{ __('Editar') }}
                                 </button>
                             </div>
                         </div>
@@ -110,7 +110,3 @@
     </div>
 </div>
 @endsection
-<script>
- const $ul=document.querySelector('.id');
- console.log($ul);
-</script>

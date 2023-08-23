@@ -65,7 +65,9 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        //
+        $users=User::all();
+        $categories=Categories::all();
+        return view('jobs.edit',compact('job','users','categories'));
     }
 
     /**
@@ -77,7 +79,9 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        //
+        $job->update($request->all());
+
+        return redirect(route('jobs.index'));
     }
 
     /**

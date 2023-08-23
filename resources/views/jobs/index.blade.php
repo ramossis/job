@@ -8,9 +8,9 @@
                 <a href="{{ route('jobs.create') }}" class="btn btn-primary btn-sm">Nuevo Trabajo<i class="fa fa-user-plus"></i></a>
             </div>
         </div>
-        <h2>Lista de Trabajos</h2>
-
-        <table class="table table-striped">
+        <h2 id="title">Lista de Trabajos</h2>
+        <div class="table responsive-sm">
+        <table class="table table-striped" id="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -32,7 +32,7 @@
                 <td>{{$val->description}}</td>
                 <td>{{$val->status}}</td>
                 <td class="md-2 btn-group">
-                    <button class="btn btn-warning"><a href=""></a>Editar</button>
+                    <a href="{{route('jobs.edit',$val->id)}}"><button class="btn btn-warning">Editar</button></a>
                 <form action="{{route('jobs.destroy',$val->id)}}"
                     method="POST" onsubmit="return confirm('Seguro desea eliminar este registro?');">
                     @csrf
@@ -45,6 +45,11 @@
               @endforeach
             </tbody>
           </table>
+        </div>
     </div>
 </div>
 @endsection
+<script>
+  const $table=document.querySelector("#id");
+  console.log($table);
+</script>
